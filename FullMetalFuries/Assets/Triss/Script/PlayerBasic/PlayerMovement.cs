@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AnimationAsset;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,12 +25,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_input.X != 0 || _input.Y != 0)
         {
+            _animator.SetBool(PlayerAnimation.Move, true);
+
             _spriteRenderer.flipX = _input.X < 0;
 
             float moveX = _input.X * Speed * Time.deltaTime;
             float moveY = _input.Y * Speed * Time.deltaTime;
 
             _rigidbody.MovePosition(new Vector2(transform.position.x + moveX, transform.position.y + moveY));
+        }
+        else
+        {
+            _animator.SetBool(PlayerAnimation.Move, false);
         }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);

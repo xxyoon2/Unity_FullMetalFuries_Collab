@@ -4,5 +4,9 @@ using UnityEngine;
 
 namespace AnimationAsset
 {
-    //public P
+    public static class PlayerAnimation
+    {
+        public static readonly int Idel = Animator.StringToHash("Idel");
+        public static readonly int Move = Animator.StringToHash("Move");
+    }
 }
