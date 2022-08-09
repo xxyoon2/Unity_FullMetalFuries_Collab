@@ -7,6 +7,7 @@ namespace AnimationAsset
     public static class PlayerAnimation
     {
         public static readonly int Idel = Animator.StringToHash("Idel");
+        public static readonly int Idel2 = Animator.StringToHash("Idel2");
         public static readonly int Move = Animator.StringToHash("Move");
     }
 }
