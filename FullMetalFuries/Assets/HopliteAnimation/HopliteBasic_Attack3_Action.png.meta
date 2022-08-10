@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b75fabfeb44c2ea499b5f7881b8f4c59
+guid: f42eceef8fff58d49873f06b3e24fd7e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,85 +128,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HopliteBasic_Attack_1_Action_0
+      name: HopliteBasic_Attack3_Action_0
       rect:
         serializedVersion: 2
         x: 1
-        y: 1
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64af6a8efd74d2f4e9cd2a298c40e35c
-      internalID: 1144704623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HopliteBasic_Attack_1_Action_1
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 1
-        width: 29
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8a0df75321408c498a0fc2157cedd9b
-      internalID: 1951274564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HopliteBasic_Attack_1_Action_2
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 1
-        width: 57
-        height: 52
+        y: 2
+        width: 55
+        height: 35
       alignment: 9
-      pivot: {x: 0.3, y: 0}
+      pivot: {x: 0.27, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 227bf05c5a5b3fb43aa051db1014cae1
-      internalID: 16509425
+      spriteID: f0b5d5c51070104479674cdb624cf50e
+      internalID: 322374351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HopliteBasic_Attack_1_Action_3
+      name: HopliteBasic_Attack3_Action_2
       rect:
         serializedVersion: 2
-        x: 217
-        y: 1
-        width: 51
-        height: 41
+        x: 72
+        y: 2
+        width: 56
+        height: 35
       alignment: 9
-      pivot: {x: 0.22, y: 0}
+      pivot: {x: 0.27, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92af82623c217d547997541d46532c01
-      internalID: 2003836369
+      spriteID: e98887301d27ad047a67df65903882c8
+      internalID: 1028442453
       vertices: []
       indices: 
       edges: []
@@ -222,10 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HopliteBasic_Attack_1_Action_0: 1144704623
-      HopliteBasic_Attack_1_Action_1: 1951274564
-      HopliteBasic_Attack_1_Action_2: 16509425
-      HopliteBasic_Attack_1_Action_3: 2003836369
+      HopliteBasic_Attack3_Action_0: 322374351
+      HopliteBasic_Attack3_Action_1: 753005378
+      HopliteBasic_Attack3_Action_2: 1028442453
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
