@@ -30,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
             float moveY = _input.Y * Speed * Time.deltaTime;
 
             _rigidbody.MovePosition(new Vector2(transform.position.x + moveX, transform.position.y + moveY));
+
+            _animator.SetBool(AnimationID.Move, true);
+        }
+        if (_input.X == 0 && _input.Y == 0)
+        {
+            _animator.SetBool(AnimationID.Move, false);
         }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
