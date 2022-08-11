@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float Speed;
+    [SerializeField]
+    private float ShieldSpeed;
+    private float currentSpeed;
 
     private const float Idel2PlayTime = 12f;
 
@@ -34,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
             _spriteRenderer.flipX = _input.X < 0;
 
-            float moveX = _input.X * Speed * Time.deltaTime;
-            float moveY = _input.Y * Speed * Time.deltaTime;
+            float moveX = _input.X * currentSpeed * Time.deltaTime;
+            float moveY = _input.Y * currentSpeed * Time.deltaTime;
 
             _rigidbody.MovePosition(new Vector2(transform.position.x + moveX, transform.position.y + moveY));
         }
@@ -54,5 +57,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
+    }
+
+    public void ShieldOn(bool isShieldOn)
+    {
+        currentSpeed = isShieldOn ? ShieldSpeed : Speed;
     }
 }

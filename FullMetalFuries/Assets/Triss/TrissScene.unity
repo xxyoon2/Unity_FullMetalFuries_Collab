@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 60
+  ShieldSpeed: 30
 --- !u!114 &1312350591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +494,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Colliders: []
+  _shieldMaxHealth: 75
+  _shieldHealth: 75
+  _shieldRestoreDuringTime: 10
+  _shieldRestoreOffsetTime: 10
+  OnShieldBroke:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1867613664
 GameObject:
   m_ObjectHideFlags: 0

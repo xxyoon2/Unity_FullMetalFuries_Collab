@@ -36,7 +36,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         Attack1 = Input.GetMouseButtonDown(0);
-        Attack2 = Input.GetMouseButtonDown(1);
+        Attack2 = Input.GetMouseButton(1);
 
         SpecialAttack = Input.GetKeyDown(KeyCode.F);
         Dodge = Input.GetKeyDown(KeyCode.Space);

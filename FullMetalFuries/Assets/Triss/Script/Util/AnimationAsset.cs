@@ -16,5 +16,7 @@ namespace AnimationAsset
         {
             Attack1_1_1, Attack1_1_2
         };
+
+        public static readonly int Shield = Animator.StringToHash("Shield");
     }
 }
