@@ -10,31 +10,40 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
     private PlayerInput _input;
     private PlayerMovement _movement;
     private Animator _animator;
+    private Rigidbody2D _rigidbody;
 
 
-    public bool IsAttacking { get; private set; }
+    private bool _isAttacking;
     private int _attack1Type;
     private int _attackStack;
+    private float _attackForce = 5f;
+    private const int _maxAttackStack = 3;
+    private float _lastAttack1Time;
+    private float _attackStackOffsetTime = 1f;
+    public int attackDamage { get; set; }
 
+    // 공격2: 쉴드 관련
     [SerializeField] private int _shieldMaxHealth = 75;
     [SerializeField]
     private int _shieldHealth = 75;
-    private bool isShieldOn = false;
-    private bool isShieldBroken = false;
-    private bool isShieldRestoring = false;
+    private bool _isShieldOn = false;
+    private bool _isShieldBroken = false;
+    private bool _isShieldRestoring = false;
 
     [SerializeField] private float _shieldRestoreDuringTime;
     [SerializeField] private float _shieldRestoreOffsetTime;
     public UnityEvent OnShieldBroke = new UnityEvent();
-    private float lastShieldDamagedTime = 0f;
+    private float _lastShieldDamagedTime = 0f;
 
     void Start()
     {
         _input = GetComponent<PlayerInput>();
         _movement = GetComponent<PlayerMovement>();
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody2D>();
 
-        lastShieldDamagedTime = Time.time;
+        _lastShieldDamagedTime = Time.time;
+        _lastAttack1Time = Time.time;
     }
 
     void Update()
@@ -57,10 +66,12 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
                 OnDodge();
             }
         }
-        _movement.ShieldOn(isShieldOn);
-        _animator.SetBool(PlayerAnimation.Shield, isShieldOn);
 
-        if(!isShieldRestoring && Time.time - lastShieldDamagedTime > 1f)
+        // 쉴드 관련 후처리
+        _movement.ShieldOn(_isShieldOn);
+        _animator.SetBool(PlayerAnimation.Shield, _isShieldOn);
+
+        if(!_isShieldRestoring && Time.time - _lastShieldDamagedTime > _shieldRestoreOffsetTime)
         {
             StartCoroutine(RestoreShield());
         }
@@ -68,13 +79,38 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
     }
     public void OnAttack1()
     {
-        _attack1Type = (_attack1Type + 1) % 2;
-        _animator.SetTrigger(PlayerAnimation.Attack1_1[_attack1Type]);
+        if(_isShieldOn || _isAttacking)
+        {
+            return;
+        }
+
+        _isAttacking = true;
+
+        // 충돌 주기
+        Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        _rigidbody.AddForce(direction * _attackForce, ForceMode2D.Impulse);
+        
+        Colliders[(int) IPlayerAttackable.AttackType.Attack1].SetActive(true);
+
+        switch(_attackStack)
+        {
+            case 0:
+                _attack1Type = (_attack1Type + 1) % 2;
+                _animator.SetTrigger(PlayerAnimation.Attack1_1[_attack1Type]);
+                break;
+            case 1:
+                _animator.SetTrigger(PlayerAnimation.Attack1_2);
+                break;
+            case 2:
+                _animator.SetTrigger(PlayerAnimation.Attack1_3);
+                break;
+        }
+        
     }
 
     public void OnAttack2()
     {
-        isShieldOn = _input.Attack2 && !isShieldBroken;
+        _isShieldOn = _input.Attack2 && !_isShieldBroken;
     }
 
     public void OnDodge()
@@ -84,18 +120,21 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
 
     public void OnSpecialAttack()
     {
+        _isAttacking = true;
         throw new System.NotImplementedException();
     }
 
-
-    public void OnCollider(int attackType)
+    public bool IsAttacking()
     {
-        Colliders[attackType].SetActive(true);
+        return _isAttacking;
     }
 
-    public void OffCollider(int attackType)
+    public void OnAttackDone(int attackType)
     {
-        Colliders[attackType].SetActive(false);
+        Debug.Log("gkgk");
+        _isAttacking = false;
+
+        Colliders[(int)IPlayerAttackable.AttackType.Attack1].SetActive(false);
     }
 
     /// <summary>
@@ -120,13 +159,16 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
             return true;
         }
 
+        
+        // 쉴드 공격 방어 처리
         _shieldHealth -= damaged;
-        lastShieldDamagedTime = Time.time;
+        _lastShieldDamagedTime = Time.time;
+
         if (_shieldHealth <= 0)
         {
             outDamage -= _shieldHealth;
             _shieldHealth = 0;
-            isShieldBroken = true;
+            _isShieldBroken = true;
             OnShieldBroke.Invoke();
             StartCoroutine(RestoreShield());
             return true;
@@ -137,7 +179,7 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
 
     private IEnumerator RestoreShield()
     {
-        isShieldRestoring = true;
+        _isShieldRestoring = true;
 
         int startShieldHealth = _shieldHealth;
         int endShieldHealth = _shieldMaxHealth;
@@ -158,16 +200,31 @@ public class TrissAttack : MonoBehaviour, IPlayerAttackable
             yield return null;
         }
 
-        isShieldBroken = false;
-        lastShieldDamagedTime = Time.time;
-        isShieldRestoring = false;
+        _isShieldBroken = false;
+        _lastShieldDamagedTime = Time.time;
+        _isShieldRestoring = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Triggered");
-        int outDamaged;
-        OnDamaged(50, out outDamaged);
-        collision.gameObject.SetActive(false);
+        if(_isShieldOn)
+        {
+            int outDamaged;
+            OnDamaged(50, out outDamaged);
+            collision.gameObject.SetActive(false);
+        }
+        else
+        {
+
+            if (Time.time - _lastAttack1Time < _attackStackOffsetTime)
+            {
+                _attackStack = (_attackStack + 1) % 3;
+            }
+            else
+            {
+                _attackStack = 0;
+                _lastAttack1Time = Time.time;
+            }
+        }
     }
 }

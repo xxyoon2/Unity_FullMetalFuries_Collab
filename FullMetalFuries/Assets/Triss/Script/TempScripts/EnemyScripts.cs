@@ -6,7 +6,7 @@ public class EnemyScripts : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag != "Player")
+        if(collision.tag == "Attack")
         {
             ColorChange(Color.red);
             Invoke("ColorChange", 1f);

@@ -138,7 +138,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Triss_Attack4_Tell_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1
+        width: 38
+        height: 27
+      alignment: 9
+      pivot: {x: 0.34, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa08c237239f44408803beccb25072d
+      internalID: -1938122524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Triss_Attack4_Tell_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1
+        width: 38
+        height: 27
+      alignment: 9
+      pivot: {x: 0.34, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cd9a01e15b30e549bc5a6c4553a76d0
+      internalID: -1607716210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Triss_Attack4_Tell_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1
+        width: 38
+        height: 27
+      alignment: 9
+      pivot: {x: 0.34, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f723655408f43449fb696f393f9297
+      internalID: -1136679454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Triss_Attack4_Tell_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1
+        width: 38
+        height: 27
+      alignment: 9
+      pivot: {x: 0.37, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dad2568271332e4db4f34eab0b088d8
+      internalID: -588228167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Triss_Attack4_Tell_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1
+        width: 38
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbaf3bd65a59c1541b6029bfff3e8e5d
+      internalID: 597638955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -149,7 +254,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Triss_Attack4_Tell_3: -588228167
+      Triss_Attack4_Tell_1: -1607716210
+      Triss_Attack4_Tell_0: -1938122524
+      Triss_Attack4_Tell_4: 597638955
+      Triss_Attack4_Tell_2: -1136679454
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

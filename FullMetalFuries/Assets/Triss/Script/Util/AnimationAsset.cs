@@ -16,7 +16,11 @@ namespace AnimationAsset
         {
             Attack1_1_1, Attack1_1_2
         };
+        public static readonly int Attack1_2 = Animator.StringToHash("Attack1_2");
+        public static readonly int Attack1_3 = Animator.StringToHash("Attack1_3");
 
-        public static readonly int Shield = Animator.StringToHash("Shield");
+        public static readonly int Attack2 = Animator.StringToHash("Attack2");
+        // 트리스 전용
+        public static readonly int Shield = Attack2;
     }
 }
